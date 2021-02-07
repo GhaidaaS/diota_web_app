@@ -1,0 +1,30 @@
+
+/* Header */
+
+	body.is-preload #header.alt > * {
+		opacity: 1;
+	}
+
+	body.is-preload #header.alt .logo {
+		-moz-transform: none;
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none;
+	}
+	.logo{
+		width: 30%;
+		height: 30%;
+	}
+	#DIoTA{
+		text-align: center;
+		position:relative;
+		background: url('https://static.wixstatic.com/media/2a0e50_00b4a3deca5d455ba97a392d734aff08~mv2.jpg') no-repeat center center;
+		background-size: cover;
+		padding-top: 10rem;
+		padding-bottom: 10rem;
+
+	}
+	.DIoTA{
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		color: #ffffff;
+	}
