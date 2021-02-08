@@ -94,7 +94,7 @@ input, select, textarea {
 
 	body {
 
-		background-image: url("images/overlay.png"), linear-gradient(45deg, #ecc4d0 15%, #69609e 85%);
+		background-image: linear-gradient(45deg, #ecc4d0 15%, #69609e 85%);
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -3034,7 +3034,7 @@ input, select, textarea {
 		}
 
 		#nav + #main {
-			padding-top: 4.25em;
+			padding-top: 5.75em;
 		}
 
 		#nav ul {
