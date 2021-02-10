@@ -1,93 +1,89 @@
 <!-- Wrapper -->
 	<div id="wrapper">
-        <!-- Header -->
+     <!-- Header -->
         <nav id="nav" class="alt">
             <ul>
-                <li><img class="logo"  src="https://static.wixstatic.com/media/2a0e50_029092c5777047c490e5d739b0f01e67~mv2.png" alt="logo" /><li>
-		    	<li><a href="#intro" >DIoTA</a></li>
+				<li><img class="logo"  src="https://static.wixstatic.com/media/2a0e50_029092c5777047c490e5d739b0f01e67~mv2.png" alt="logo" /><li>
+		    	<li><a href="#intro" class="active" >DIoTA</a></li>
 		    	<li><a href="#first" >OUR SERVICES</a></li>
 		    	<li><a href="#second" >OUR STORY</a></li>
-		    	<li><a href="#cta" >CONTACT US</a></li>
+				<li><a href="#cta" >CONTACT US</a></li>
+				<li></li>
             </ul>
-			</nav>
-		<!-- Main -->
-			<div id="main">
-				<!-- DIoTA -->
-				<section id="DIoTA" class="main">
-					<div class="content">
-						<header class="major">
-                            <h1 class:="DIoTA">DIoTA</h1>
-                            <h4 class:="DIoTA">For Smart City</h4>
-						</header>
-					</div>
-				</section>
-				<!-- First Section -->
-					<section id="first" class="main special">
-						<header class="major">
-							<h2>OUR SERVICES</h2>
-						</header>
-						<ul class="features">
-							<li>
-                                <span >
-                                    <img src="https://static.wixstatic.com/media/2a0e50_912c2e54177e423787829235e0be01be~mv2.png" alt="scan-icon">
-                                </span>
-								<p>Scan of smart city IoT data
-                                flow to detect IoT attacks</p>
-                                <a href="generic.html" class="button">Scan</a>
-							</li>
-							<li>
-                                <span>
-                                    <img src="https://static.wixstatic.com/media/2a0e50_69b1e0c1a2a44fb0849bfb62ee013551~mv2.png" alt="get-report-icon">
-                                </span>
-								<p>Get report about smart city
-                                status on specific period of time</p>
-                                <a href="generic.html" class="button">Get Report</a>
-							</li>
-						</ul>
-					</section>
-				<!-- Second Section -->
-					<section id="second" class="main special">
-						<header class="major">
-							<h2>OUR STORY</h2>
-							<p>Detecting attacks is a basic requirement in our evolving world. It is an essential task
-                            for smart cities and the Internet of things. This is because smart cities use Internet of
-                              Things (IoT) devices such as connected sensors, light processors, and network cards that
-                              are able to manage them through web services and  &#47; or
-                              other types of interfaces. Data from smart cities is being used to improve infrastructure and services.
-                              This prompted us to develop a system that detects harmful IoT attacks on smart cities using deep learning techniques.
-                              And discover the attacks that plague smart cities.</p>
-						</header>
-					</section>
-				<!-- Get Started -->
-					<section id="cta" class="main special">
-						<header class="major">
-							<h2>Contact Us</h2>
-							<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-							posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
-						</header>
-						<footer class="major">
-							<ul class="actions special">
-								<li><a href="generic.html" class="button primary">Get Started</a></li>
-								<li><a href="generic.html" class="button">Learn More</a></li>
-							</ul>
-						</footer>
-					</section>
-			</div>
-		<!-- Footer -->
-			<footer id="footer">
-				<section>
-					<h2>DIoTA</h2>
-					<p>Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae tincidunt odio.</p>
-				</section>
-				<section>
-					<h2>Find Us</h2>
-					<dl class="alt">
-						<dt>Address</dt>
-						<dd>Medina, Taibah University</dd>
-						<dt>Email</dt>
-						<dd><a href="#">info@DIoTa.com</a></dd>
-					</dl>
-				</section>
-				<p class="copyright">&copy; DIoTA, 2021.</p>
-			</footer>
+		</nav>
+	<!--Main -->
+		<div id="main">
+		<!-- DIoTA -->
+			<section id="DIoTA" class="main">
+				<div class="content">
+					<header class="major">
+                        <h1 class:="DIoTA">DIoTA</h1>
+                        <h4 class:="DIoTA">For Smart City</h4>
+					</header>
+				</div>
+			</section>
+		<!-- First Section -->
+			<section id="first" class="main special">
+				<header class="major">
+					<h2>OUR SERVICES</h2>
+				</header>
+				<ul class="features">
+					<li>
+                        <span >
+                            <img src="https://static.wixstatic.com/media/2a0e50_912c2e54177e423787829235e0be01be~mv2.png" alt="scan-icon">
+                        </span>
+						<p>Scan of smart city IoT data
+                        flow to detect IoT attacks</p>
+                        <%= link_to 'Scan', scan_path,class:"button primary" %>
+					</li>
+					<li>
+                        <span>
+                            <img src="https://static.wixstatic.com/media/2a0e50_69b1e0c1a2a44fb0849bfb62ee013551~mv2.png" alt="get-report-icon">
+                        </span>
+						<p>Get report about smart city
+                        status on specific period of time</p>
+                        <%= link_to 'Dashboard', dashboard_path,class:"button primary" %>
+					</li>
+				</ul>
+			</section>
+		<!-- Second Section -->
+			<section id="second" class="main special">
+				<header class="major">
+					<h2>OUR STORY</h2>
+					<p>Detecting attacks is a basic requirement in our evolving world. It is an essential task
+                    for smart cities and the Internet of things. This is because smart cities use Internet of
+                      Things (IoT) devices such as connected sensors, light processors, and network cards that
+                      are able to manage them through web services and  &#47; or
+                      other types of interfaces. Data from smart cities is being used to improve infrastructure and services.
+                      This prompted us to develop a system that detects harmful IoT attacks on smart cities using deep learning techniques.
+                      And discover the attacks that plague smart cities.</p>
+				</header>
+			</section>
+		<!-- Get Started -->
+			<section id="cta" class="main special">
+				<header class="major">
+					<h2>Contact Us</h2>
+				</header>
+				<footer class="major">
+					<form method="post" action="#">
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall">
+								<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+							</div>
+							<div class="col-6 col-12-xsmall">
+								<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+							</div>
+							<div class="col-12">
+								<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+							</div>
+							<div class="col-12">
+								<ul class="actions special">
+									<li><a href="generic.html" class="button primary"> Send Message </a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</footer>
+			</section>
+		</div>
 	</div>

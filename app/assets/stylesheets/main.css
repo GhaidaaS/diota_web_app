@@ -111,7 +111,7 @@ input, select, textarea {
 /* Type */
 
 	body {
-		background-color: #935d8c;
+		background-color: linear-gradient(45deg, #ecc4d0 15%, #69609e 85%);
 		color: rgba(255, 255, 255, 0.65);
 	}
 
