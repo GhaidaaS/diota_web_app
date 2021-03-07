@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root 'home#index'
   get "/dashboard" => "home#dashboard"
   resources :uploads, only: [:index, :create]
+  get "/add_users" => "users#index"
+  post '/add_users' => 'users#create'
 end

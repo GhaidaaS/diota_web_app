@@ -1,4 +1,6 @@
 class UploadsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @upload = Upload.new
     @uploads = Upload.all
