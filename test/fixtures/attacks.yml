@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upload: 
+  source_ip: 
+  source_port: 
+  destination_ip: 
+  destination_port: 
+  duration: 
+  sequence_id: 
+  attack_type: MyString
+
+two:
+  upload: 
+  source_ip: 
+  source_port: 
+  destination_ip: 
+  destination_port: 
+  duration: 
+  sequence_id: 
+  attack_type: MyString

@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_232337) do
+ActiveRecord::Schema.define(version: 2021_03_12_225701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attacks", force: :cascade do |t|
+    t.bigint "upload_id"
+    t.string "source_ip"
+    t.string "source_port"
+    t.string "destination_ip"
+    t.string "destination_port"
+    t.string "duration"
+    t.string "sequence_id"
+    t.string "attack_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["upload_id"], name: "index_attacks_on_upload_id"
+  end
+
+  create_table "statistics", force: :cascade do |t|
+    t.bigint "upload_id"
+    t.integer "total_records"
+    t.integer "total_attacks"
+    t.integer "total_ddos"
+    t.integer "total_dos"
+    t.integer "total_theft"
+    t.integer "total_reconnaissance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["upload_id"], name: "index_statistics_on_upload_id"
+  end
 
   create_table "uploads", force: :cascade do |t|
     t.integer "status"
@@ -39,5 +66,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_232337) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attacks", "uploads"
+  add_foreign_key "statistics", "uploads"
   add_foreign_key "uploads", "users"
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upload: 
+  total_records: 
+  total_attacks: 
+  total_ddos: 
+  total_dos: 
+  total_theft: 
+  total_reconnaissance: 1
+
+two:
+  upload: 
+  total_records: 
+  total_attacks: 
+  total_ddos: 
+  total_dos: 
+  total_theft: 
+  total_reconnaissance: 1
