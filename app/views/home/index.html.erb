@@ -9,14 +9,13 @@
 		    	<li><a href="#second" >OUR STORY</a></li>
 				<li><a href="#cta" >CONTACT US</a></li>
 				<% if current_user %>
-					<%= link_to destroy_user_session_path, method: :delete do %>
+					<%= link_to destroy_user_session_path, class: 'button', method: :delete do %>
 						LOGOUT
 						<%= image_tag "logout_icon.svg" %>
 					<% end %>
 				<% else %>
-					<%= link_to user_session_path do %>
+					<%= link_to user_session_path, class: 'button' do %>
 						LOGIN
-						<%= image_tag "icons8-female-user.svg" %>
 					<% end %>
 				<% end %>
             </ul>
@@ -26,7 +25,7 @@
 			<section id="DIoTA" class="main">
 				<div class="content">
 					<header class="major">
-						<h1 class:="DIoTA">DIoTA</h1>
+						<h1 class:="DIoTA">Detection of IoT Attacks</h1>
 						<h4 class:="DIoTA">For Smart City</h4>
 					</header>
 				</div>

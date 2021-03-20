@@ -1,39 +1,43 @@
 <!-- Wrapper -->
-	<div id="wrapper">
-	<!-- Header -->
-		<%= render 'shared/header' %>
-		<!-- Main -->
-		<div id="main">
-		<!-- Content -->
-			<section id="content" class="main">
-				<span class="image main"><img src="images/pic04.jpg" alt="" /></span>
-				<h2>Upload Your Data here</h2>
-				<p> The file you will upload must be in .CSV format</p>
-				<%= form_for @upload do |f| %>
-				  <%= f.file_field :csv_file, required: true %>
-				  <%= f.submit "Submit", disable_with: 'Submiting...' %>
-				<% end %>
-				<h3>Your Last Uploads</h3>
-				<div class="table-wrapper">
-					<table class="alt">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>status</th>
-								<th>Processing Time</th>
-							</tr>
-						</thead>
-						<tbody>
-						<%@uploads.each do |upload| %>
-							<tr>
-								<td><%= upload.id %></td>
-								<td><%= upload.status %></td>
-								<td><%= upload.finished_at ? distance_of_time_in_words(upload.finished_at, upload.created_at) : 'Not finished' %></td>
-							</tr>
-						<% end %>
-						</tbody>
-					</table>
-				</div>
-			</section>
-		</div>
+<div id="wrapper">
+<!-- Header -->
+	<%= render 'shared/header' %>
+	<!-- Main -->
+	<div id="main">
+	<!-- Content -->
+		<section id="content" class="main">
+			<span class="image main"><img src="images/pic04.jpg" alt="" /></span>
+			<header class="major">
+					<h2>Upload Your Data Here</h2>
+				</header>
+			<p> The file you will upload must be in .CSV format</p>
+			<%= form_for @upload do |f| %>
+			  <%= f.file_field :csv_file, required: true %>
+			  <%= f.submit "Submit",class: 'button primary', disable_with: 'Submiting...' %>
+			<% end %>
+			<h3>Your Last Uploads</h3>
+			<div class="table-wrapper">
+				<table class="alt">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Created At</th>
+							<th>Status</th>
+							<th>Processing Time</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% @uploads.each do |upload| %>
+						<tr>
+							<td><%= upload.id %></td>
+							<td><%= upload.created_at %></td>
+							<td><%= upload.status %></td>
+							<td><%= upload.finished_at ? distance_of_time_in_words(upload.finished_at, upload.created_at) : 'Not finished' %></td>
+						</tr>
+					<% end %>
+					</tbody>
+				</table>
+			</div>
+		</section>
 	</div>
+</div>
