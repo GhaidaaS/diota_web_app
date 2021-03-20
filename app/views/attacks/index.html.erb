@@ -1,0 +1,44 @@
+<div id="wrapper">
+  <%= render 'shared/header' %>
+  <div id="main">
+    <section class="main">
+      <header class="major">
+        <h2>Attacks</h2>
+      </header>
+      <div class="table-wrapper">
+        <table class="alt">
+          <thead>
+            <tr>
+              <th>Upload ID</th>
+              <th>Sequence ID</th>
+              <th>source IP</th>
+              <th>source Port</th>
+              <th>Destnation IP</th>
+              <th>Destnation Port</th>
+              <th>Started At</th>
+              <th>Ended At</th>
+              <th>Duration</th>
+              <th>Attack Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @attacks.each do |attack| %>
+              <tr>
+                <td><%= attack.upload_id %></td>
+                <td><%= attack.sequence_id %></td>
+                <td><%= attack.source_ip %></td>
+                <td><%= attack.source_port %></td>
+                <td><%= attack.destination_ip %></td>
+                <td><%= attack.destination_port %></td>
+                <td><%= attack.started_at %></td>
+                <td><%= attack.ended_at %></td>
+                <td><%= attack.duration %></td>
+                <td><%= attack.attack_type %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
