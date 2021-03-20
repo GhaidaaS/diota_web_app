@@ -3,7 +3,7 @@ class UploadsController < ApplicationController
 
   def index
     @upload = Upload.new
-    @uploads = Upload.all
+    @uploads = Upload.limit(10).order(created_at: :desc)
   end
 
   def create
