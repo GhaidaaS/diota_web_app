@@ -1,0 +1,31 @@
+<h3>Latest Attacks</h3>
+<div class="table-wrapper">
+  <table class="alt">
+    <thead>
+      <tr>
+        <th>Sequence ID</th>
+        <th>source IP</th>
+        <th>source Port</th>
+        <th>Destnation IP</th>
+        <th>Destnation Port</th>
+        <th>Started At</th>
+        <th>Ended At</th>
+        <th>Attack Type</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%@attacks.each do |attack| %>
+      <tr>
+        <td><%= attack.sequence_id %></td>
+        <td><%= attack.source_ip %></td>
+        <td><%= attack.source_port %></td>
+        <td><%= attack.destination_ip %></td>
+        <td><%= attack.destination_port %></td>
+        <td><%= attack.started_at %></td>
+        <td><%= attack.ended_at %></td>
+        <td><%= attack.attack_type %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

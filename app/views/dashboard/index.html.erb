@@ -1,0 +1,44 @@
+<!-- Wrapper -->
+<div id="wrapper">
+<!-- Header -->
+	<%= render 'shared/header' %>
+	<!-- Main -->
+	<div id="main">
+	<!-- Content -->
+	<section id="content" class="main">
+		<header class="major">
+			<h2>Attacks Dashboard</h2>
+		</header>
+		<ul class="statistics">
+			<li class="style2">
+				<strong><%= @uploads.count %></strong> Total Uploads
+			</li>
+			<li class="style3">
+				<strong><%= @total_traffic %></strong> All Traffic
+			</li>
+			<li class="style4">
+				<strong><%= @total_normal_traffic %></strong> Normal Traffic
+			</li>
+			<li class="style5">
+				<strong><%= @total_attacks %></strong> Attacks Traffic
+			</li>
+		</ul>
+		<div class="row gtr-uniform">
+			<div  class="col-6 col-12-xsmall">
+				<%= render 'attacks_chart' %>
+			</div>
+			<div class="col-6 col-12-xsmall">
+				<%= render 'attack_types_chart' %>
+			</div>
+			<div class="col-12">
+				<%= render 'attacks_per_month_chart' %>
+			</div>
+			<div class="col-12">
+				<%= render 'attacks_per_hour_chart' %>
+			</div>
+			<%= render 'attacks_table' %>
+		</div>
+		<%= link_to 'see all...', attacks_path%>
+	</section>
+	</div>
+</div>
