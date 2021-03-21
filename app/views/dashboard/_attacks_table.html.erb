@@ -1,4 +1,6 @@
-<h3>Latest Attacks</h3>
+<header class="major">
+  <h2>Latest Attacks</h2>
+</header>
 <div class="table-wrapper">
   <table class="alt">
     <thead>
@@ -14,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-    <%@attacks.each do |attack| %>
+    <% @latest_attacks.each do |attack| %>
       <tr>
         <td><%= attack.sequence_id %></td>
         <td><%= attack.source_ip %></td>

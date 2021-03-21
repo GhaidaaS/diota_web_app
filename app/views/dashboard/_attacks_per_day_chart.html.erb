@@ -1,0 +1,77 @@
+<canvas id="attacks_per_day_chart"></canvas>
+
+<script>
+	var response_data = {}
+	fetch('/dashboard/attacks_per_day').then(function(response) {
+		return response.json();
+	}).then(function(data) {
+		console.log(data);
+		response_data = data
+			var ctx = document.getElementById('attacks_per_day_chart').getContext('2d');
+	new Chart(ctx, {
+		type: 'line',
+		data: {
+			datasets: [{
+				label: 'DDoS',
+				backgroundColor: 'rgb(153, 102, 255, 0.5)',
+				borderColor: 'rgb(153, 102, 255, 0.5)',
+				fill: false,
+				data: response_data['ddos'],
+		},
+		{
+				label: 'DoS',
+				backgroundColor: 'rgba(54, 162, 235, 0.5)',
+				borderColor: 'rgba(54, 162, 235, 0.5)',
+				fill: false,
+				data: response_data['dos'],
+		},
+		{
+				label: 'Theft',
+				backgroundColor: 'rgb(75, 192, 192, 0.5)',
+				borderColor: 'rgb(75, 192, 192, 0.5)',
+				fill: false,
+				data: response_data['theft'],
+		},
+		{
+				label: 'Reconnaissance',
+				backgroundColor: 'rgb(255, 205, 86, 0.5)',
+				borderColor: 'rgb(255, 205, 86, 0.5)',
+				fill: false,
+				data: response_data['reconnaissance'],
+		}]
+		},
+		options: {
+			title: {
+				display: true,
+				text: 'Attacks Per Day'
+			},
+			scales: {
+				xAxes: [{
+					type: 'time',
+					time: {
+						parser: 'YYYY/MM/DD',
+						// displayFormats: {'day': 'MM/YY'},
+						tooltipFormat: 'YY/MM/DD',
+						unit: 'day'
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Date'
+					}
+				}],
+				yAxes: [{
+					scaleLabel: {
+						display: true,
+						labelString: 'value'
+					}
+				}]
+			},
+		}
+	}
+	);
+	}).catch(function() {
+		console.log("Booo");
+	});
+		// var ddos = <%= @ddos.to_json %>;
+
+</script>

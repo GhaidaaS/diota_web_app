@@ -15,9 +15,16 @@ class DashboardController < ApplicationController
 
     # Get attacks data
     @attacks = Attack.where(upload_id: @uploads.ids)
-    # @attack_seq = @attacks.select(:sequence_id)
-    # @attack_type = @attack_seq.select(:attack_type)
-    @attacks_per_date = []
+    @latest_attacks = @attacks.limit(10).order(started_at: :desc)
+  end
 
+  def attacks_per_day
+    @attacks = Attack.joins(upload: :user).where('users.id = ?', current_user.id)
+    attacks_per_type = @attacks.group_by { |a| a.attack_type }
+    @ddos = attacks_per_type['ddos'].group_by{ |a| a.started_at.strftime("%Y-%m-%d") }.map { |k, v| { x: k, y: v.count } }
+    @dos = attacks_per_type['dos'].group_by{ |a| a.started_at.strftime("%Y-%m-%d") }.map { |k, v| { x: k, y: v.count } }
+    @theft = attacks_per_type['theft'].group_by{ |a| a.started_at.strftime("%Y-%m-%d") }.map { |k, v| { x: k, y: v.count } }
+    @reconnaissance = attacks_per_type['reconnaissance'].group_by{ |a| a.started_at.strftime("%Y-%m-%d") }.map { |k, v| { x: k, y: v.count } }
+    render json: { ddos: @ddos, dos: @dos, theft: @theft, reconnaissance: @reconnaissance }, status: :ok
   end
 end
