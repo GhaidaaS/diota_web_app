@@ -1,43 +1,44 @@
 <div id="wrapper">
   <%= render 'shared/header' %>
-    <div id="main">
-      <section class="main">
-        <header class="major">
-          <h2>Add User</h2>
-        </header>
-        <%= form_for @user, url: add_users_path do |f| %>
-          <div class="row gtr-uniform">
-              <div class="field col-6 col-12-xsmall">
-              <%= f.label :First_name %><br />
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-            </div>
+  <div id="main">
+    <section class="main">
+      <header class="major">
+        <h2>Users</h2>
+      </header>
+      <%= form_with url: "/manage_users", method: :get do |f| %>
+        <%= f.text_field :by_id, value: params[:by_id], placeholder: 'ID...', class: 'col-3 col-12-xsmall filters' %>
+        <%= f.text_field :by_name, value: params[:by_name], placeholder: 'Name...', class: 'col-3 col-12-xsmall filters' %>
+        <%= f.select :by_role, options_for_select([['User', 'false'], ['Admin', 'true']], params[:by_role]), { prompt: 'User Role...' }, { class: 'col-3 col-12-xsmall filters' } %>
+        <%= f.submit "Search", class: 'button primary filters col-3', disable_with: 'Submiting...' %>
+      <% end %>
 
-            <div class="field col-6 col-12-xsmall">
-              <%= f.label :Last_name %><br />
-              <%= f.text_field :last_name, autofocus: true, autocomplete: "Last_name" %>
+      <div class="table-wrapper">
+        <table class="alt">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.admin? ? 'Admin' : 'User' %></td>
+                <td><%= link_to 'delete', delete_user_path(id: user.id), method: :delete %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="actions">
+            <%= link_to "Add User", create_users_path, :class=> "button primary" %>
             </div>
-
-            <div class="field col-12">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-
-            <div class="field col-12">
-              <%= f.label :password %>
-              <em>(6 characters minimum)</em>
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </div>
-
-            <div class="field col-12">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </div>
-
-            <div class="actions">
-              <%= f.submit "Add", :class=> "button primary" %>
-            </div>
-          </div>
-        <% end %>
+      </div>
     </section>
   </div>
 </div>

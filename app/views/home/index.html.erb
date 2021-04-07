@@ -1,107 +1,105 @@
 <!-- Wrapper -->
-	<div id="wrapper">
-     <!-- Header -->
-        <nav id="nav" class="alt">
-            <ul>
-				<li><img class="logo"  src="https://static.wixstatic.com/media/2a0e50_029092c5777047c490e5d739b0f01e67~mv2.png" alt="logo" /><li>
-		    	<li><a href="#intro" class="active" >DIoTA</a></li>
-		    	<li><a href="#first" >OUR SERVICES</a></li>
-		    	<li><a href="#second" >OUR STORY</a></li>
-				<li><a href="#cta" >CONTACT US</a></li>
-				<% if current_user %>
-					<%= link_to destroy_user_session_path, class: 'button', method: :delete do %>
-						LOGOUT
-						<%= image_tag "logout_icon.svg" %>
-					<% end %>
-				<% else %>
-					<%= link_to user_session_path, class: 'button' do %>
-						LOGIN
-					<% end %>
-				<% end %>
-            </ul>
-		</nav>
-		<div id="main">
-		<!-- DIoTA -->
-			<section id="DIoTA" class="main">
-				<div class="content">
-					<header class="major">
-						<h1 class:="DIoTA">Detection of IoT Attacks</h1>
-						<h3 class:="DIoTA">For Smart City</h3>
-					</header>
-				</div>
-			</section>
-		<!-- First Section -->
-			<section id="first" class="main special">
+<div id="wrapper">
+	<!-- Header -->
+	<nav id="nav" class="alt">
+		<ul>
+			<li><%= image_tag "LOGO-REP1.png", class: "logo" %><li>
+			<li><a href="#intro" class="active" >DIoTA</a></li>
+			<li><a href="#first" >OUR SERVICES</a></li>
+			<li><a href="#second" >OUR STORY</a></li>
+			<li><a href="#cta" >CONTACT US</a></li>
+			<%= render 'shared/user_dropdown' %>
+		</ul>
+	</nav>
+	<div id="main">
+	<!-- DIoTA -->
+		<section id="DIoTA" class="main">
+			<div class="content">
 				<header class="major">
-					<h2>OUR SERVICES</h2>
+					<h1 class:="DIoTA">Detection of IoT Attacks</h1>
+					<h3 class:="DIoTA">For Smart City</h3>
 				</header>
-				<ul class="features">
-					<li>
-						<span >
-							<%= image_tag "database-icon.svg" %>
-						</span>
-						<p>Scan of smart city IoT data
-								flow to detect IoT attacks</p>
-								<%= link_to 'Scan', uploads_path, class:"button primary" %>
-					</li>
-					<li>
-					<span>
-							<img src="https://img.icons8.com/dusk/200/000000/combo-chart.png" alt="get-report-icon" />
+			</div>
+		</section>
+	<!-- First Section -->
+		<section id="first" class="main special">
+			<header class="major">
+				<h2>OUR SERVICES</h2>
+			</header>
+			<ul class="features">
+				<li>
+					<span >
+						<%= image_tag "database-icon.svg" %>
 					</span>
-					<p>Get report about smart city
-						status on specific period of time</p>
-						<%= link_to 'Dashboard', dashboard_path, class:"button primary" %>
-					</li>
-					<% if current_user&.admin? %>
-					<li>
-						<span>
-							<%= image_tag "add-users-icon.svg" %>
-						</span>
-						<p>Get report about smart city
-						status on specific period of time</p>
-						<%= link_to 'Add User', add_users_path, class:"button primary" %>
-					</li>
-					<% end %>
-				</ul>
-			</section>
-		<!-- Second Section -->
-			<section id="second" class="main special">
-				<header class="major">
-					<h2>OUR STORY</h2>
-					<p>Detecting attacks is a basic requirement in our evolving world. It is an essential task
-						for smart cities and the Internet of things. This is because smart cities use Internet of
-						Things (IoT) devices such as connected sensors, light processors, and network cards that
-						are able to manage them through web services and  &#47; or
-						other types of interfaces. Data from smart cities is being used to improve infrastructure and services.
-						This prompted us to develop a system that detects harmful IoT attacks on smart cities using deep learning techniques.
-						And discover the attacks that plague smart cities.</p>
-				</header>
-			</section>
-		<!-- Get Started -->
-			<section id="cta" class="main special">
-				<header class="major">
-					<h2>Contact Us</h2>
-				</header>
-				<footer class="major">
-					<form method="post" action="#">
-						<div class="row gtr-uniform">
-							<div class="col-6 col-12-xsmall">
-								<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-							</div>
-							<div class="col-6 col-12-xsmall">
-								<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-							</div>
-							<div class="col-12">
-								<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-							</div>
-							<div class="col-12">
-								<ul class="actions special">
-									<li><a href="generic.html" class="button primary"> Send Message </a></li>
-								</ul>
-							</div>
+					<p>Scan of smart city IoT data
+							flow to detect IoT attacks</p>
+							<%= link_to 'Scan', uploads_path, class:"button primary" %>
+				</li>
+				<li>
+				<span>
+						<img src="https://img.icons8.com/dusk/200/000000/combo-chart.png" alt="get-report-icon" />
+				</span>
+				<p>Get report about smart city
+					status on specific period of time</p>
+					<%= link_to 'Dashboard', dashboard_path, class:"button primary" %>
+				</li>
+				<li>
+				<span>
+					<img src="https://img.icons8.com/dusk/200/000000/hacking.png"  alt="get-attacks-icon" />
+				</span>
+				<p>Search attacks predicted by
+					deep learning model!</p>
+					<%= link_to 'Attacks', attacks_path, class:"button primary" %>
+				</li>
+				<% if current_user&.admin? %>
+				<li>
+					<span>
+						<%= image_tag "add-users-icon.svg" %>
+					</span>
+					<p>Search, create and delete users! only for admins.</p>
+					<%= link_to 'Manage User', manage_users_path, class:"button primary" %>
+				</li>
+				<% end %>
+			</ul>
+		</section>
+	<!-- Second Section -->
+		<section id="second" class="main special">
+			<header class="major">
+				<h2>OUR STORY</h2>
+				<p>Detecting attacks is a basic requirement in our evolving world. It is an essential task
+					for smart cities and the Internet of things. This is because smart cities use Internet of
+					Things (IoT) devices such as connected sensors, light processors, and network cards that
+					are able to manage them through web services and  &#47; or
+					other types of interfaces. Data from smart cities is being used to improve infrastructure and services.
+					This prompted us to develop a system that detects harmful IoT attacks on smart cities using deep learning techniques.
+					And discover the attacks that plague smart cities.</p>
+			</header>
+		</section>
+	<!-- Get Started -->
+		<section id="cta" class="main special">
+			<header class="major">
+				<h2>Contact Us</h2>
+			</header>
+			<footer class="major">
+				<form method="post" action="#">
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
 						</div>
-					</form>
-				</footer>
-			</section>
-		</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+						</div>
+						<div class="col-12">
+							<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+						</div>
+						<div class="col-12">
+							<ul class="actions special">
+								<li><a href="generic.html" class="button primary"> Send Message </a></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</footer>
+		</section>
 	</div>
+</div>

@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  # Scopes
+  has_scope :by_id
+  has_scope :by_name
+  has_scope :by_role
+
   def index
     redirect_to root_path unless current_user&.admin?
+    @users = apply_scopes(User).order(created_at: :desc).all
+  end
+
+  def add_user
     @user = User.new
-    @users = User.all
   end
 
   def create
@@ -17,7 +25,31 @@ class UsersController < ApplicationController
       # display error
       flash[:alert] = "User was not created. Errors: " + user.errors.full_messages.join(',')
     end
-    redirect_to add_users_path
+    redirect_to manage_users_path
+  end
+
+  def profile
+    @user = current_user
+  end
+
+  def update_profile
+    update_params = user_params.to_h
+    update_params.delete('password') if update_params['password'].blank?
+    update_params.delete('password_confirmation') if update_params['password_confirmation'].blank?
+
+    if current_user.update(update_params)
+      # display success
+      flash[:notice] = "Date was successfully updated."
+    else
+      # display error
+      flash[:alert] = "Date was not updated. Errors: " + current_user.errors.full_messages.join(',')
+    end
+    redirect_to user_profile_path
+  end
+
+  def delete_user
+    User.find(params[:id]).destroy!
+    redirect_to manage_users_path
   end
 
   private

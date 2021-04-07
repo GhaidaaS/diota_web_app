@@ -1,0 +1,43 @@
+<div id="wrapper">
+  <%= render 'shared/header' %>
+    <div id="main">
+      <section class="main">
+        <header class="major">
+          <h2>Add User</h2>
+        </header>
+        <%= form_for @user, url: create_users_path do |f| %>
+          <div class="row gtr-uniform">
+              <div class="field col-6 col-12-xsmall">
+              <%= f.label :First_name %><br />
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+            </div>
+
+            <div class="field col-6 col-12-xsmall">
+              <%= f.label :Last_name %><br />
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "Last_name" %>
+            </div>
+
+            <div class="field col-12">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field col-12">
+              <%= f.label :password %>
+              <em>(6 characters minimum)</em>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+
+            <div class="field col-12">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Add", :class=> "button primary" %>
+            </div>
+          </div>
+        <% end %>
+    </section>
+  </div>
+</div>
