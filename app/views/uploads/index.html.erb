@@ -6,7 +6,6 @@
 	<div id="main">
 	<!-- Content -->
 		<section id="content" class="main">
-			<span class="image main"><img src="images/pic04.jpg" alt="" /></span>
 			<header class="major">
 					<h2>Upload Your Data Here</h2>
 				</header>
@@ -24,6 +23,7 @@
 							<th>Created At</th>
 							<th>Status</th>
 							<th>Processing Time</th>
+							<th>Statistics...</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,7 +32,8 @@
 							<td><%= upload.id %></td>
 							<td><%= upload.created_at %></td>
 							<td><%= upload.status %></td>
-							<td><%= upload.finished_at ? distance_of_time_in_words(upload.finished_at, upload.created_at) : 'Not finished' %></td>
+							<td><%= upload.finished_at ? distance_of_time_in_words(upload.finished_at, upload.created_at, include_seconds: true) : 'Not finished' %></td>
+							<td><%= link_to 'see stats..', dashboard_path(upload_id: upload.id) %></td>
 						</tr>
 					<% end %>
 					</tbody>

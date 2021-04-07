@@ -1,45 +1,30 @@
-<canvas id="attacks_per_day_chart"></canvas>
+<div class= "main " style=" border-top: solid 1px #dddddd;">
+	<div class="row" style="padding: 1.5em 2em 0.5em 6.5em;">
+		<div class="col-4">
+			<label for="start">Start date:</label>
+			<input type="date" id="start" name="trip-start"
+						value="<%= @attacks.order(:started_at)&.first&.started_at&.strftime("%Y-%m-%d") %>"
+						min="2015-01-01" max="2020-12-31">
+		</div>
 
+		<div class="col-4">
+			<label for="start">End date:</label>
+			<input type="date" id="end" name="trip-end"
+						value="<%= @attacks.order(:started_at)&.last&.started_at&.strftime("%Y-%m-%d") %>"
+						min="2015-01-01" max="2020-12-31">
+		</div>
+
+		<div class="col-4">
+			<button id="chart-filter-btn" class="button primary" >update</button>
+		</div>
+	</div>
+	<canvas id="attacks_per_day_chart"></canvas>
+</div>
 <script>
-	var response_data = {}
-	fetch('/dashboard/attacks_per_day').then(function(response) {
-		return response.json();
-	}).then(function(data) {
-		console.log(data);
-		response_data = data
-			var ctx = document.getElementById('attacks_per_day_chart').getContext('2d');
-	new Chart(ctx, {
+	var ctx = document.getElementById('attacks_per_day_chart').getContext('2d');
+	var timelineChart = new Chart(ctx, {
 		type: 'line',
-		data: {
-			datasets: [{
-				label: 'DDoS',
-				backgroundColor: 'rgb(153, 102, 255, 0.5)',
-				borderColor: 'rgb(153, 102, 255, 0.5)',
-				fill: false,
-				data: response_data['ddos'],
-		},
-		{
-				label: 'DoS',
-				backgroundColor: 'rgba(54, 162, 235, 0.5)',
-				borderColor: 'rgba(54, 162, 235, 0.5)',
-				fill: false,
-				data: response_data['dos'],
-		},
-		{
-				label: 'Theft',
-				backgroundColor: 'rgb(75, 192, 192, 0.5)',
-				borderColor: 'rgb(75, 192, 192, 0.5)',
-				fill: false,
-				data: response_data['theft'],
-		},
-		{
-				label: 'Reconnaissance',
-				backgroundColor: 'rgb(255, 205, 86, 0.5)',
-				borderColor: 'rgb(255, 205, 86, 0.5)',
-				fill: false,
-				data: response_data['reconnaissance'],
-		}]
-		},
+		data: {},
 		options: {
 			title: {
 				display: true,
@@ -69,9 +54,73 @@
 		}
 	}
 	);
+
+	var response_data = {}
+	var query = window.location.search
+	var urlParams = new URLSearchParams(query);
+	var uploadId = urlParams.get('upload_id');
+	var uploadParam = uploadId ? `upload_id=${uploadId}` : ''
+
+	fetch(`/dashboard/attacks_per_day?${uploadParam}`).then(function(response) {
+		return response.json();
+	}).then(function(data) {
+		console.log(data);
+		response_data = data
+		timelineChart.data = buildData(response_data)
+		timelineChart.update();
 	}).catch(function() {
 		console.log("Booo");
 	});
 		// var ddos = <%= @ddos.to_json %>;
 
+document.getElementById("chart-filter-btn").addEventListener("click", function() {
+
+	var response_data = {}
+	var startDate = document.querySelector('#start').value
+	var endDate = document.querySelector('#end').value
+	var params = { start_date: startDate, end_date: endDate }
+	fetch(`/dashboard/attacks_per_day?start_date=${startDate}&end_date=${endDate}&${uploadParam}`).then(function(response) {
+		return response.json();
+	}).then(function(data) {
+		console.log(data);
+		response_data = data
+		timelineChart.data = buildData(response_data)
+		timelineChart.update();
+	}).catch(function() {
+		console.log("Booo");
+	});
+
+})
+function buildData(response){
+	return {
+			datasets: [{
+				label: 'DDoS',
+				backgroundColor: 'rgb(153, 102, 255, 0.5)',
+				borderColor: 'rgb(153, 102, 255, 0.5)',
+				fill: false,
+				data: response['ddos'],
+		},
+		{
+				label: 'DoS',
+				backgroundColor: 'rgba(54, 162, 235, 0.5)',
+				borderColor: 'rgba(54, 162, 235, 0.5)',
+				fill: false,
+				data: response['dos'],
+		},
+		{
+				label: 'Theft',
+				backgroundColor: 'rgb(75, 192, 192, 0.5)',
+				borderColor: 'rgb(75, 192, 192, 0.5)',
+				fill: false,
+				data: response['theft'],
+		},
+		{
+				label: 'Reconnaissance',
+				backgroundColor: 'rgb(255, 205, 86, 0.5)',
+				borderColor: 'rgb(255, 205, 86, 0.5)',
+				fill: false,
+				data: response['reconnaissance'],
+		}]
+	}
+}
 </script>
