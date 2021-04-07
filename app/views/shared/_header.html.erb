@@ -1,8 +1,8 @@
 <!-- Header -->
-    <nav id="nav" class="alt">
-        <ul>
-			<li><img class="logo"  src="https://static.wixstatic.com/media/2a0e50_029092c5777047c490e5d739b0f01e67~mv2.png" alt="logo" /><li>
-	    	<li><a href="<%= root_path %>" >Home</a></li>
-			<li><a href="#intro" ><%= current_user.first_name %></a></li>
-        </ul>
-	</nav>
+<nav id="nav" class="alt">
+	<ul>
+		<li style= "margin-right:30%"><%= image_tag "LOGO-REP1.png", class: "logo" %><li>
+		<li style= "margin-left:15%"><a href="<%= root_path %>" >Home</a></li>
+		<%= render 'shared/user_dropdown' %>
+	</ul>
+</nav>
