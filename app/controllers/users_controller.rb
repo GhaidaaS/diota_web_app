@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Date was successfully updated."
     else
       # display error
-      flash[:alert] = "Date was not updated. Errors: " + current_user.errors.full_messages.join(',')
+      flash.now[:alert] = "Date was not updated. Errors: " + current_user.errors.full_messages.join(',')
     end
     redirect_to user_profile_path
   end
