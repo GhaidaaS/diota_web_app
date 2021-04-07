@@ -1,4 +1,4 @@
-require 'sidekiq/web'
+# require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   delete '/delete_user' => 'users#delete_user'
 
   get "/attacks" => "attacks#index"
-  authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
-  end
+  # authenticate :user, lambda { |u| u.admin? } do
+  #   mount Sidekiq::Web => '/sidekiq'
+  # end
 end
