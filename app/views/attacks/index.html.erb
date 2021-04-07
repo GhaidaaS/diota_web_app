@@ -5,18 +5,26 @@
       <header class="major">
         <h2>Attacks</h2>
       </header>
+      <%= form_with url: "/attacks", method: :get do |f| %>
+        <%= f.select :by_attack_type, options_for_select(Attack.attack_types.to_a, params[:by_attack_type]), { prompt: 'Attack Type...' }, { class: 'col-2 col-12-xsmall filters' } %>
+        <%= f.text_field :by_source_ip, value: params[:by_source_ip], placeholder: 'Source IP...', class: 'col-2 col-12-xsmall filters' %>
+        <%= f.text_field :by_source_port, value: params[:by_source_port], placeholder: 'Source Port...',  class: 'col-2 col-12-xsmall filters' %>
+        <%= f.text_field :by_destination_ip, value: params[:by_destination_ip], placeholder: 'Destination IP...', class: 'col-2 col-12-xsmall filters' %>
+        <%= f.text_field :by_destination_port, value: params[:by_destination_port], placeholder: 'Destination Port...', class: 'col-2 col-12-xsmall filters' %>
+        <%= f.submit "Search", class: 'button primary filters col-2', disable_with: 'Submiting...' %>
+      <% end %>
+
       <div class="table-wrapper">
         <table class="alt">
           <thead>
             <tr>
-              <th>Upload ID</th>
-              <th>Sequence ID</th>
-              <th>source IP</th>
-              <th>source Port</th>
-              <th>Destnation IP</th>
-              <th>Destnation Port</th>
-              <th>Started At</th>
-              <th>Ended At</th>
+              <th>SeqID</th>
+              <th>SrcIP</th>
+              <th>SrcPort</th>
+              <th>DesIP</th>
+              <th>DesPort</th>
+              <th>Started </th>
+              <th>Ended </th>
               <th>Duration</th>
               <th>Attack Type</th>
             </tr>
@@ -24,7 +32,6 @@
           <tbody>
             <% @attacks.each do |attack| %>
               <tr>
-                <td><%= attack.upload_id %></td>
                 <td><%= attack.sequence_id %></td>
                 <td><%= attack.source_ip %></td>
                 <td><%= attack.source_port %></td>
