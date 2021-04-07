@@ -1,0 +1,20 @@
+<% if current_user %>
+  <li>
+    <div class="dropdown">
+      <a class= 'button'>
+        Hi <%= current_user.first_name%>
+        <img src="https://img.icons8.com/ios/16/000000/down-squared--v1.png"/>
+      </a>
+      <div class="dropdown-content">
+      <%= link_to 'Profile', user_profile_path, class: 'dropbtn' %>
+      <%= link_to 'Logout', destroy_user_session_path, class: 'dropbtn', method: :delete %>
+      </div>
+    </div>
+  </li>
+<% else %>
+  <li><div class="dropdown">
+    <%= link_to user_session_path, class: 'button' do %>
+      LOGIN
+    <% end %>
+  </div> </li>
+<% end %>
