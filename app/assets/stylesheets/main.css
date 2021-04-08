@@ -117,7 +117,7 @@ input, select, textarea {
 }
 
 .animated {
-  animation-duration: 5s !important;
+  animation-duration: 10s !important;
   animation-fill-mode: both !important;
 }
 /* Basic */
@@ -2875,8 +2875,8 @@ input, select, textarea {
 			.features li:nth-child(2){
 				margin-left: 8em;
 			}
-			.features li:nth-child(3){
-				margin-right: 7em;
+			.features li:nth-child(4){
+				margin-left: 7em;
 			}
 		}
 		@media screen and (max-width: 980px) {
